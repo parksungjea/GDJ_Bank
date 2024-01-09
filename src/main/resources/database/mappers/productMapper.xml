@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.winter.app.product.ProductDAO">
+	
+	
+	
+	<select id="getList" resultType="com.winter.app.product.ProductDTO"  parameterType="com.winter.app.util.Pager">
+		SELECT * FROM
+		(SELECT ROWNUM R, RG.* FROM
+		(SELECT * FROM PRODUCT
+		ORDER BY PRODUCTNUM DESC) RG)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	
+	<select id="getDetail" resultType="productDTO" parameterType="productDTO">
+	SELECT * FROM PRODUCT
+	WHERE PRODUCTNUM=#{productNum}
+	</select>
+	
+	<select id="add" resultType="productDTO" parameterType="productDTO">
+	INSERT INTO PRODUCT
+	VALUES(PRODUCT_SEQ.NEXTVAL,#{productName},#{productContent},#{productRate},#{productJumsu})
+	</select>
+	</mapper>

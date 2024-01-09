@@ -15,5 +15,15 @@ public class productService {
 		pager.makeRow();
 		return productDAO.getList(pager);
 		
+		
+	}
+	public ProductDTO getDetail(ProductDTO productDTO) throws Exception{
+		return productDAO.getDetail(productDTO);
+	 
+	}
+	
+	public int add(ProductDTO productDTO) throws Exception{
+		
+		return productDAO.add(productDTO);
 	}
 }

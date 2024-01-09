@@ -13,15 +13,25 @@ import com.winter.app.util.Pager;
 public class ProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
-	String namespace = "com.winter.app.product.ProductDAO.";
 	
+	private String namespace ="com.winter.app.product.ProductDAO.";
+	
+	
+	public int add(ProductDTO productDTO) {
+		return sqlSession.insert(namespace+"add", productDTO);
+		
+	}
 	
 	public List<ProductDTO> getList(Pager pager) throws Exception{
 		
 		
-		return sqlSession.selectList(namespace+"getlist", pager);
+		return sqlSession.selectList(namespace+"getList", pager);
 		
 		
+	}
+	
+	public ProductDTO getDetail(ProductDTO productDTO)throws Exception {
+		return sqlSession.selectOne(namespace+"getDetail", productDTO);
 	}
 
 }
