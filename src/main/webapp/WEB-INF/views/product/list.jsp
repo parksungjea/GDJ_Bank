@@ -15,7 +15,7 @@
 <tr>
 	<td>NUM</td> <td>name</td> <td>CONTENTS</td> <td>RATE</td> <td>JUMSU</td>
 </tr>
-<c:forEach items="${requestScope.list}" var="dto">
+<c:forEach items="${list}" var="dto">
 <tr>
 <td>${pageScope.dto.productNum}</td>
 <td><a href="./detail?productNum=${dto.productNum}">${pageScope.dto.productName}</a></td>
@@ -27,7 +27,7 @@
 
 
 </table>
-<button>Add</button>
+<button><a href="./add">Add</a></button>
 
 <c:import url="../temps/bootst_js.jsp"></c:import>
 </body>

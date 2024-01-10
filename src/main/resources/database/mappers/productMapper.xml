@@ -6,7 +6,7 @@
 	
 	
 	
-	<select id="getList" resultType="com.winter.app.product.ProductDTO"  parameterType="com.winter.app.util.Pager">
+	<select id="getList" resultType="ProductDTO"  parameterType="com.winter.app.util.Pager">
 		SELECT * FROM
 		(SELECT ROWNUM R, RG.* FROM
 		(SELECT * FROM PRODUCT
@@ -19,8 +19,16 @@
 	WHERE PRODUCTNUM=#{productNum}
 	</select>
 	
-	<select id="add" resultType="productDTO" parameterType="productDTO">
+	<insert id="add" parameterType="productDTO">
+	<selectKey keyProperty="productNum" order="BEFORE" resultType="Long">
+	SELECT PRODUCT_SQE.NEXTVAL FROM DUAL
+	</selectKey>
 	INSERT INTO PRODUCT
-	VALUES(PRODUCT_SEQ.NEXTVAL,#{productName},#{productContent},#{productRate},#{productJumsu})
-	</select>
+	VALUES(productNum,#{productName},#{productContent},#{productRate},#{productJumsu})
+	</insert>
+<!-- 	<insert id="addFile" parameterType="Long">
+	INSERT INTO PRODUCTFILE
+	VALUES(FILE_SEQ.NEXTVAL,#{},,)
+	</insert>  -->
+	
 	</mapper>

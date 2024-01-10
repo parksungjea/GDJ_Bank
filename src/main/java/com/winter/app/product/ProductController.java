@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.util.Pager;
 
@@ -31,11 +32,13 @@ public class ProductController {
 		return "product/detail";
 	}
 	
-	public String add(ProductDTO productDTO, Model model) throws Exception {
-	int a = productService.add(productDTO);
-		model.addAttribute("add", a);
-		return "product/add";
-	}
+//	@RequestMapping(value="add", method = RequestMethod.GET)
+//	public String add(ProductDTO productDTO) throws Exception{
+//			productService.add(productDTO);
+//		
+//		return "product/add";
+//	}
+
 	
 	
 
