@@ -6,9 +6,6 @@ public interface BoardService {
 
 	
 	
-	//totalCount
-	public Long getTotalCount()throws Exception;
-	
 	//list
 	public List<BoardDTO> getList() throws Exception;
 	
@@ -25,4 +22,5 @@ public interface BoardService {
 	
 	//delete
 	public int setDelete(BoardDTO boardDTO)throws Exception;
+	
 }
