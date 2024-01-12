@@ -10,14 +10,14 @@
 	</context-param>
 	<!-- Encoding 설정 -->
 	<!-- 한글꺠짐을 방지하기위한 설정 -->
-	<fiter>
+	<filter>
 		<filter-name>encode</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param><!--  파라미터를 여기서만 쓰겠다-->
+		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
 		</init-param>
-	</fiter>
+	</filter>
 	
 	<filter-mapping>
 		<filter-name>encode</filter-name>
