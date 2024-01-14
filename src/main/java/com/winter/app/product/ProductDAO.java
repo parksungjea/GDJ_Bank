@@ -12,6 +12,11 @@ public class ProductDAO {
 	
 	private String namespace = "com.winter.app.product.ProductDAO.";
 	
+	
+	public int File(ProductFileDTO prodtFileDTO) throws Exception{
+		return sqlSession.insert(namespace+"File",prodtFileDTO);
+	}
+	
 	public int update(ProductDTO productDTO)throws Exception {
 			return sqlSession.update(namespace+"update",productDTO);
 	}
