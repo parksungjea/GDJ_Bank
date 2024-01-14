@@ -19,30 +19,18 @@
             <!-- Navigation-->
 			<!-- 사용전 경로를 꼭 수정하세요 ~~ -->
 			<c:import url="../temps/header.jsp"></c:import>
-			
-			<div class="flex-shrink-0">
-				<div class="text-center mb-5">
-						<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">product List</span></h1>
-				</div>
-				
-				<table>
-				<c:forEach items="${list}" var="dto">
-				<tr>
-					<td>${dto.productNum}</td>
-					<td><a href="./detail?productNum=${dto.productNum}">${dto.productName}</a></td>
-					<td>${dto.productContents}</td>
-					<td>${dto.productRate}</td>
-					<td>${dto.productJumsu}</td>
-									
-				</tr>
-				</c:forEach>
-				
-				</table>
-				<div>
-					<a href="./add">상품등록</a>
-				</div>
-			</div>
-
+		<form action="./update" method="post">
+		<label>productNum :</label>
+		<input type="text" name="productNum" value="${update.productNum}" readonly="readonly"><br>
+		<label>productName :</label>
+		<input type="text" name="productName"><br>
+		<label>productContents :</label>
+		<input type="text" name="productContents"><br>
+		<label>productRate :</label>
+		<input type="text" name="productRate"><br>
+		
+		<button type="submit">submit!!</button>
+		</form>
         </main>
 	
 	<!-- Footer -->

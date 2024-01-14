@@ -37,10 +37,10 @@
                                 <!-- To make this form functional, sign up at-->
                                 <!-- https://startbootstrap.com/solution/contact-forms-->
                                 <!-- to get an API token!-->
-                                <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="./add" enctype="multipart/form-data">
+                                <form id="contactForm"  action="./add" enctype="multipart/form-data" method="post">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" name="productName"  id="name" type="text" placeholder="상품명을 입력하세요" data-sb-validations="required" />
+                                        <input class="form-control" name="productName"  id="name" type="text" placeholder="상품명을 입력하세요" />
                                         <label for="name">상품명</label>
                                         <div class="invalid-feedback" data-sb-feedback="name:required">상품명을 입력해 바보야</div>
                                     </div>
@@ -56,18 +56,18 @@
                                     <!-- Phone number input-->
                                     <div class="mb-3 form-floating">
                                         <label for="phone">이자율</label>
-                                        <input class="form-control" name="productRate" id="reta" type="tel" placeholder="이자율" data-sb-validations="required" />
+                                        <input class="form-control" name="productRate" id="reta" type="text" placeholder="이자율" data-sb-validations="required" />
                                         <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
                                     </div>
                                     
                                           <!-- Phone number input-->
                                     <div class="mb-3" >
-                                     <label for="phone">파일첨부</label>
-                                        <input class="form-control" name="attach" id="phone" type="file" placeholder="(123) 456-7890" />
-                                        <input class="form-control" name="attach" id="phone" type="file" placeholder="(123) 456-7890" />
-                                        <input class="form-control" name="attach" id="phone" type="file" placeholder="(123) 456-7890" />
-                                        <input class="form-control" name="attach" id="phone" type="file" placeholder="(123) 456-7890" />
-                                        <input class="form-control" name="attach" id="phone" type="file" placeholder="(123) 456-7890" />
+                                     <label for=""productFile"">파일첨부</label>
+                                        <input class="form-control" name="productFile" id="phone" type="file" placeholder="(123) 456-7890" />
+                                        <input class="form-control" name="productFile" id="phone" type="file" placeholder="(123) 456-7890" />
+                                        <input class="form-control" name="productFile" id="phone" type="file" placeholder="(123) 456-7890" />
+                                        <input class="form-control" name="productFile" id="phone" type="file" placeholder="(123) 456-7890" />
+                                        <input class="form-control" name="productFile" id="phone" type="file" placeholder="(123) 456-7890" />
                                         
                                         
                                     </div>

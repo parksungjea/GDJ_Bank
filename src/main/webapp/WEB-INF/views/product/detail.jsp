@@ -19,30 +19,14 @@
             <!-- Navigation-->
 			<!-- 사용전 경로를 꼭 수정하세요 ~~ -->
 			<c:import url="../temps/header.jsp"></c:import>
-			
-			<div class="flex-shrink-0">
-				<div class="text-center mb-5">
-						<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">product List</span></h1>
-				</div>
-				
-				<table>
-				<c:forEach items="${list}" var="dto">
-				<tr>
-					<td>${dto.productNum}</td>
-					<td><a href="./detail?productNum=${dto.productNum}">${dto.productName}</a></td>
-					<td>${dto.productContents}</td>
-					<td>${dto.productRate}</td>
-					<td>${dto.productJumsu}</td>
-									
-				</tr>
-				</c:forEach>
-				
-				</table>
-				<div>
-					<a href="./add">상품등록</a>
-				</div>
-			</div>
-
+		
+			<h1>${detail.productNum}</h1>
+			<h1>${detail.productName}</h1>
+			<h1>${detail.productContents}</h1>
+			<h1>${detail.productRate}</h1>
+			<h1>${detail.productJumsu}</h1>
+		
+		<button><a href="./update?productNum=${detail.productNum}">update</a></button>
         </main>
 	
 	<!-- Footer -->
