@@ -2,15 +2,21 @@ package com.winter.app.board;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+
+import com.winter.app.util.Pager;
+
 public interface BoardDAO {
 
 	
 	
 	//totalCount
-	public Long getTotalCount()throws Exception;
+	public Long getTotalCount(Pager pager)throws Exception;
 	
 	//list
-	public List<BoardDTO> getList() throws Exception;
+	public List<BoardDTO> getList(Pager pager) throws Exception;
+	
 	
 	//detail
 	public BoardDTO getDetail(BoardDTO boardDTO)throws Exception;

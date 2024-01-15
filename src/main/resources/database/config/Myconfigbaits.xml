@@ -7,5 +7,10 @@
  	<typeAliases>
  		<typeAlias type="com.winter.app.product.ProductDAO" alias="ProductDAO"/>
  		<typeAlias type="com.winter.app.product.ProductDTO" alias="ProductDTO"/>
+ 		<typeAlias type="com.winter.app.board.notice.NoticeDAO" alias="NoticeDAO"/>
+ 		<typeAlias type="com.winter.app.board.notice.NoticeDTO" alias="NoticeDTO"/>
+ 		<typeAlias type="com.winter.app.util.Pager" alias="Pager"/>
+ 		<typeAlias type="com.winter.app.board.boardFileDTO" alias="BoardFileDTO"/>
+ 		<typeAlias type="com.winter.app.board.BoardDTO" alias="BoardDTO"/>
  	</typeAliases>
   </configuration>

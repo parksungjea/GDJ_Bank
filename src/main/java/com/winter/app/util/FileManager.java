@@ -3,8 +3,10 @@ package com.winter.app.util;
 import java.io.File;
 import java.util.Calendar;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+@Component
 public class FileManager {
 
 	

@@ -1,16 +1,16 @@
 package com.winter.app.product;
 
-import java.io.File;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 @RequestMapping(value = "/product/*")
@@ -39,11 +39,8 @@ public class ProductController {
 		return "product/add";
 	}
 	@RequestMapping(value = "add" , method = RequestMethod.POST)
-	public String add(ProductDTO productDTO, Model model, MultipartFile file) throws Exception{
-		int result = productService.add(productDTO);
-		
-		File f = new File("/resources/product");
-		String filename = file.getOriginalFilename();
+	public String add(ProductDTO productDTO, Model model, MultipartFile [] file) throws Exception{
+		int result = productService.add(productDTO,file);
 		
 		String msg = "실패";
 		if(result>0) {
