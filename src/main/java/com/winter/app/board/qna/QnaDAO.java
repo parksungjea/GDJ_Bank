@@ -19,7 +19,7 @@ public class QnaDAO implements BoardDAO {
 	
 	
 	@Override
-	public Long getTotalCount(Pager pager) throws Exception {
+	public Integer getTotalCount(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

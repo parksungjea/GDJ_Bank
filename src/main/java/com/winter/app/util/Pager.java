@@ -1,5 +1,7 @@
 package com.winter.app.util;
 
+import com.winter.app.board.BoardDAO;
+
 public class Pager {
 	private Integer start_Num;
 	private Integer last_Num;
@@ -12,6 +14,8 @@ public class Pager {
 	private Integer last_page;
 	private String search ="";
 	private String kind;
+	
+	private BoardDAO boardDAO;
 	
 	
 	
@@ -75,8 +79,15 @@ public class Pager {
 		this.start_Num = this.last_Num - this.getPager() + 1;
 	}
 	
-	public void makeNum() {
+	public void makeNum(Pager pager) throws Exception{
 		//1. 총 갯수로 총 페이지 수 구하기
+		  
+		 Integer totalCount = boardDAO.getTotalCount(pager);
+				
+		 Integer totalPage = 0;
+		 int mod = 0;
+		 if(totalCount%pager.getPager()>0)mod=1;
+		 totalPage = (totalCount/pager.getPager()+mod);
 		
 		//2. 총 페이지수로 총 블럭수 구하기
 		
@@ -115,6 +126,12 @@ public class Pager {
 	}
 	public void setPager(Integer pager) {
 		this.pager = pager;
+	}
+	public BoardDAO getBoardDAO() {
+		return boardDAO;
+	}
+	public void setBoardDAO(BoardDAO boardDAO) {
+		this.boardDAO = boardDAO;
 	}
 	
 }

@@ -16,9 +16,9 @@ public class NoticeDAO implements BoardDAO {
 	private final String namespace = "com.winter.app.board.notice.NoticeDAO.";
 	
 	@Override
-	public Long getTotalCount(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer getTotalCount(Pager pager) throws Exception {
+		
+		return sqlSession.selectOne(namespace+"getTotalCount", pager);
 	}
 
 	@Override

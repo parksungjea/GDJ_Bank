@@ -12,7 +12,7 @@ public interface BoardDAO {
 	
 	
 	//totalCount
-	public Long getTotalCount(Pager pager)throws Exception;
+	public Integer getTotalCount(Pager pager)throws Exception;
 	
 	//list
 	public List<BoardDTO> getList(Pager pager) throws Exception;

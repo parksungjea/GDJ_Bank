@@ -25,8 +25,6 @@ public class ProductService {
 			return productDAO.update(productDTO);
 		}
 		
-		
-		
 		public int add(ProductDTO productDTO, MultipartFile [] file)throws Exception {
 			int result = productDAO.add(productDTO);
 			
@@ -37,13 +35,15 @@ public class ProductService {
 					continue;
 				}
 				String filename = fileManager.fileSave(path, f);			
-				ProductFileDTO fileDTO = new ProductFileDTO();
-				fileDTO.setFileName(filename);
-				fileDTO.setOriName(f.getOriginalFilename());
-				fileDTO.setProductNum(productDTO.getProductNum());
-				result =productDAO.File(fileDTO);
 				
-				return result;
+				ProductFileDTO productFileDTO = new ProductFileDTO();
+				
+				productFileDTO.setFileName(filename);
+				productFileDTO.setOriName(f.getOriginalFilename());
+				productFileDTO.setProductNum(productDTO.getProductNum());
+				result = productDAO.File(productFileDTO);
+				
+				
 				
 			}
 				

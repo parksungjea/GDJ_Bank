@@ -42,4 +42,12 @@
   	INSERT INTO NOTICE(BOARDNUM,BOARDTITLE,BOARDWRITER,BOARDCONTENTS,BOARDDATE,BOARDHIT)
   	VALUES(#{boardNum},#{boardTitle}, #{boardWriter}, #{boardContents},SYSDATE,0)
   </insert>
+  
+  
+  <select id="getTotalCount" resultType="Integer" parameterType="Pager">
+  	SELECT COUNT(BOARDERNUM) FROM NOTICE
+  </select>
+  
+  
+  
   </mapper>
