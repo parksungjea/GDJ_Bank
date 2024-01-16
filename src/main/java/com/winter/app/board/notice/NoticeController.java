@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.board.BoardDTO;
 import com.winter.app.board.BoardService;
@@ -21,6 +23,20 @@ public class NoticeController {
 	@Qualifier("noticeService")
 	private BoardService boardService;
 	
+	
+	@ModelAttribute("bbs")
+	public Integer getKind()throws Exception {
+		return 0;
+		
+	}
+	
+	
+	@ModelAttribute("board")
+	public String getBoard() throws Exception{
+		return "notice";
+		
+	}
+	
 	//list
 	//@RequestMapping(value = "list", method = RequestMethod.GET)
 	@GetMapping(value =  "list")
@@ -28,6 +44,7 @@ public class NoticeController {
 		List<BoardDTO> ar = boardService.getList(pager);
 		
 		model.addAttribute("list", ar);
+		
 		return "board/list";
 		
 	}
@@ -40,13 +57,14 @@ public class NoticeController {
 	
 	}
 	@GetMapping(value = "add")
-	public String setadd()throws Exception {
+	public String setadd()throws Exception{
 		return "board/add";
 		
 	}
 	@PostMapping( value = "add")
-	public String setadd(BoardDTO boardDTO)throws Exception {
-		int result = boardService.setAdd(boardDTO);
+	public String setadd(BoardDTO boardDTO, MultipartFile [] attachs, Model model)throws Exception {
+		int result = boardService.setAdd(boardDTO, attachs);
+		
 		return "redirect:./list";
 		
 	}

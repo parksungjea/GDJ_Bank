@@ -2,26 +2,105 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.winter.app.board.notice.NoticeQnaDAO">
+  <mapper namespace="com.winter.app.board.qna.QnaDAO">
+  
+
+
+<!-- file Delete -->
+<delete id="setFileDelete" parameterType="BoardDTO">
+DELETE QNAFILE WHERE BOARDNUM=#{boardNum}
+
+</delete>
+
+  
+  <!-- file List -->
+  <select id="getFileList" resultType="BoardFileDTO" parameterType="BoardDTO">
+  SELECT FILENAME FROM QNAFILE
+  WHERE BOARDNUM=#{boardNum}
+  </select>
   
   
-  <select id="getList" resultType="NoticeDTO" parameterType="Pager">
+  
+  <!-- FileAdd -->
+  
+  <insert id="setFileAdd" parameterType="BoardFileDTO">
+	INSERT INTO QNAFILE
+	(FILENUM, BOARDNUM, FILENAME, ORINAME)
+	VALUES(NOTICE_SEQ.NEXTVAL,#{boardNum},#{fileName},#{oriName})
+  </insert>
+  
+  
+  <!-- reply add -->
+  <insert id="setReplyAdd" parameterType="QnaDTO">
+  	<selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
+  		 SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
+  	</selectKey>
+    	INSERT INTO QNA(BOARDNUM,BOARDTITLE,BOARDWRITER,
+  	BOARDCONTENTS,BOARDDATE,BOARDHIT,BOARDREF,BOARDSTEP,BOARDDEPTH,FLAG)
+  	VALUES(#{boardNum},#{boardTitle}, #{boardWriter}, 
+  	#{boardContents},SYSDATE,0,#{boardRef},#{boardStep},#{boardDepth},0)
+  </insert>
+  
+  
+  <update id="setDelete" parameterType="QnaDTO">
+  UPDATE QNA SET FLAG=#{flag}
+  WHERE BOARDNUM=#{boardNum}
+  </update>
+  
+  
+  <!-- reply step update -->
+  <update id="setReplyUpdate" parameterType="QnaDTO">
+  UPDATE QNA SET BOARDSTEP=BOARDSTEP+1
+  WHERE BOARDREF=#{boardRef} AND BOARDSTEP > #{boardStep}
+  </update>
+  
+  
+  
+  
+  
+  <select id="getList" resultType="QnaDTO" parameterType="Pager">
 	
 	SELECT * FROM
 		 (SELECT ROWNUM N, R.* FROM	
-		(SELECT * FROM NOTICEQNA
-		ORDER BY BOARDNUM DESC) R)
+		(SELECT * FROM QNA
+		ORDER BY BOARDREF DESC, BOARDSTEP ASC) R)
 	WHERE N BETWEEN #{start_Num} AND #{last_Num}
 	
   </select>
   
   <insert id="setAdd" parameterType="BoardDTO">
     <selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
-    SELECT BOARD_SEQ.NEXTVAL DUAL
+    SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
     </selectKey>
-  	INSERT INTO NOTICEQNA(BOARDNUM,BOARDTITLE,BOARDWRITER,
-  	BOARDCONTENTS,BOARDDATE,BOARDHIT,BOARDREF,BOARDSTEP,BOARDDEPTH)
+  	INSERT INTO QNA(BOARDNUM,BOARDTITLE,BOARDWRITER,
+  	BOARDCONTENTS,BOARDDATE,BOARDHIT,BOARDREF,BOARDSTEP,BOARDDEPTH,FLAG)
   	VALUES(#{boardNum},#{boardTitle}, #{boardWriter}, 
-  	#{boardContents},SYSDATE,0,#{boardNum},0,0)
+  	#{boardContents},SYSDATE,0,#{boardNum},0,0,0)
   </insert>
+  
+   <resultMap type="QnaDTO" id="getDetailResult">
+ <id column="BOARDNUM" property="boardNum" />
+ <result column="BOARDTITLE" property="boardTitle"/>
+ <result column="BOARDCONTENTS" property="boardContents"/>
+ <result column="BOARDWRITER" property="boardWriter"/>
+ <result column="BOARDHIT" property="boardHit"/>
+ <result column="BOARDREF" property="boardRef"/>
+ <result column="BOARDSTEP" property="boardStep"/>
+ <result column="BOARDDEPTH" property="boardDepth"/>
+<collection property="fileDTOs" javaType="List" ofType="BoardFileDTO">
+<id column="FILENUM" property="fileNum"/>
+<result column="FILENAME" property="fileName"/>
+<result column="ORINAME" property="oriName"/>
+</collection>
+ </resultMap> 
+   <select id="getDetail" resultMap="getDetailResult" parameterType="BoardDTO" >
+  SELECT * 
+  FROM QNA N
+ 	    LEFT JOIN
+ 		QNAFILE NF
+ 		USING(BOARDNUM)
+ 		WHERE BOARDNUM=#{boardNum}
+  </select>
+ 
+ 
   </mapper>

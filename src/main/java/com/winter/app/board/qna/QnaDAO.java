@@ -8,14 +8,21 @@ import org.springframework.stereotype.Repository;
 
 import com.winter.app.board.BoardDAO;
 import com.winter.app.board.BoardDTO;
+import com.winter.app.board.BoardFileDTO;
 import com.winter.app.util.Pager;
 @Repository
 public class QnaDAO implements BoardDAO {
 	  @Autowired
 	  private SqlSession sqlSession;
-	  private String namespace = "com.winter.app.board.notice.NoticeQnaDAO.";
+	  private String namespace = "com.winter.app.board.qna.QnaDAO.";
 	  
 	
+	  
+	  
+	  public int setFileAdd(BoardFileDTO boardFileDTO)throws Exception {
+		  return sqlSession.insert(namespace+"setFileAdd", boardFileDTO);
+		  
+	  }
 	
 	
 	@Override
@@ -33,7 +40,7 @@ public class QnaDAO implements BoardDAO {
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace+"getDetail", boardDTO);
 	}
 
 	@Override
@@ -50,8 +57,28 @@ public class QnaDAO implements BoardDAO {
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.delete(namespace+"setDelete", boardDTO);
+	}
+	
+	public List<BoardFileDTO> getFileList(BoardDTO boardDTO)throws Exception {
+		return sqlSession.selectList(namespace+"getFileList", boardDTO);
+		
+	}
+	
+	public int setReplyUpdate(QnaDTO qnaDTO)throws Exception {
+		return sqlSession.update(namespace+"setReplyUpdate", qnaDTO);
+		
 	}
 
+	
+	public int setReplyAdd(QnaDTO qnaDTO)throws Exception {
+		return sqlSession.insert(namespace+"setReplyAdd", qnaDTO);
+		
+	}
+	
+	public int setFileDelete(BoardDTO boardDTO)throws Exception{
+		return sqlSession.delete(namespace+"setFileDelete", boardDTO);
+		
+	}
 }

@@ -2,7 +2,7 @@ package com.winter.app.board;
 
 import com.winter.app.files.FileDTO;
 
-public class boardFileDTO extends FileDTO{
+public class BoardFileDTO extends FileDTO{
 	private Long boardNum;
 
 	public Long getBoardNum() {

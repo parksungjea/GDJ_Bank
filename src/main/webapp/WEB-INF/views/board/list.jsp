@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>BoardList</title>
+        <title>${board}List</title>
        
         <!-- Favicon-->
 	<!-- 사용전 경로를 꼭 수정하세요 ~~ -->
@@ -22,7 +22,7 @@
 	
 		<section>
           	  <div class="text-center mb-5">
-                 <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">BoardList</span></h1>
+                 <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">${board}List</span></h1>
               </div>
                   <div class="row gx-5 justify-content-center">
                    <div class="col-lg-11 col-xl-9 col-xxl-8">
@@ -35,8 +35,8 @@
                     		  <th>No</th>
                               <th>Title</th>
                               <th>Writer</th>
-                              <th>Date</th>
-                              <th>Hit</th>	
+                              <th>CONTENTS</th>
+                              <th>DATE</th>	
                     		</tr>
                     
                     	</thead>
@@ -48,13 +48,40 @@
 							private Date boardDate;
 							private Long boardHit; -->
                         <c:forEach items="${list}" var="dto">
+                        
+                        <c:set var="f" value="0"></c:set>
+                        <c:catch>
+                        <c:set var="f" value="${dto.flag}"></c:set>
+                        <c:if test="${f eq 1}">
+                        <tr>
+                        <td></td>
+                        <td>삭제되었다</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        </tr>
+					    </c:if>
+				                          
+                        </c:catch>
+                        <c:if test="${f eq 0}">
+                        
                             <tr>
                                 <td>${dto.boardNum}</td>
-                                <td><a href="./detail?boardNum=${dto.boardNum}">${dto.boardTitle}</a></td>
+                                <td>
+                                <a href="./detail?boardNum=${dto.boardNum}">
+                                <c:catch>
+                               	<c:forEach begin="1" end="${dto.boardDepth}">--</c:forEach>
+                                </c:catch>
+                                ${dto.boardTitle}
+                                </a>
+                                </td>
                                 <td>${dto.boardWriter}</td>
                                 <td>${dto.boardContents}</td>
                                 <td>${dto.boardDate}</td>
                             </tr>
+                            </c:if>
+                            
+
                             </c:forEach>
 
                         </tbody>

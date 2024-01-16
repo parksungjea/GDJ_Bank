@@ -6,9 +6,18 @@ import java.util.Calendar;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.board.BoardFileDTO;
+
 @Component
 public class FileManager {
 
+	
+	public void fileDelete(String path, String filename) {
+		File file = new File(path,filename);
+		file.delete();
+		
+	}
+	
 	
 	public String fileSave(String path, MultipartFile file) throws Exception{
 		
