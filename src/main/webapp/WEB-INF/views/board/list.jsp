@@ -80,7 +80,8 @@
                    </table>
                             
                             <div>
-                            <form action="list" method="get">
+                            <form id="searchForm" action="list" method="get">
+                            <input id="page" type="hidden" name="page" value="1">
                             <select class="form-select" name="kind">							 
 							  <option value="kind1">Title</option>
 							  <option value="kind2">Contents</option>
@@ -98,23 +99,25 @@
 							<nav aria-label="Page navigation example">
 								<ul class="pagination">
 									<c:if test="${!pager.start}">
-										<li class="page-item"><a class="page-link"
+										<li class="page-item ">
+										<a class="page-link" 
 											href="./list?page=${pager.start_Num-1}"
-											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+											aria-label="Previous"> <span class="pager" data-page="${pager.start_Num-1} aria-hidden="true">&laquo;</span>
 										</a></li>
 									</c:if>
 
 									<c:forEach begin="${pager.start_Num}" end="${pager.last_Num}"
 										var="i">
-										<li class="page-item"><a class="page-link"
+										<li class="page-item pager"><a class="page-link pager"
 											href="./list?page=${i}">${i}</a></li>
 									</c:forEach>
 
 									<!-- false일때만 보여지게 (true는 없어지게하는거임) -->
 									<c:if test="${!pager.last}">
-										<li class="page-item"><a class="page-link"
+										<li class="page-item">
+										<a class="page-link " 
 											href="./list?page=${pager.last_Num+1}"
-											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+											aria-label="Next"> <span class="pager" data-page="${pager.start_Num-1} aria-hidden="true">&raquo;</span>
 										</a></li>
 									</c:if>
 
@@ -137,5 +140,6 @@
 	<!-- Footer -->
 	<!-- 사용전 경로를 꼭 수정하세요 ~~ -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script src="/resources/js/boardSearch.js"></script>
     </body>
 </html>
