@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.board.BoardDTO;
+import com.winter.app.board.BoardFileDTO;
 import com.winter.app.board.BoardService;
 import com.winter.app.util.Pager;
 
@@ -44,6 +45,7 @@ public class NoticeController {
 		List<BoardDTO> ar = boardService.getList(pager);
 		
 		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 		
 		return "board/list";
 		
@@ -69,6 +71,25 @@ public class NoticeController {
 		
 	}
 	
+	@PostMapping("delete")
+	public String setDelete(NoticeDTO boardDTO)throws Exception{
+		
+		int result = boardService.setDelete(boardDTO);
+		return "redirect:./list";
+	}
+	@GetMapping("update")
+	public String setUpdate(BoardDTO boardDTO, Model model) throws Exception{
+		boardDTO = boardService.getDetail(boardDTO);
+		model.addAttribute("boardDTO", boardDTO);
+		return "board/update";
+	}
+	
+	@PostMapping("update")
+	public String setUpdate(BoardDTO boardDTO, MultipartFile [] attachs) throws Exception{
+		int result = boardService.setUpdate(boardDTO, attachs);
+		
+		return "redirect:./list";
+	}
 	
 	
 	

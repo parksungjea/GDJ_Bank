@@ -41,12 +41,7 @@
                     
                     	</thead>
                         <tbody>
-<!--                         	private Long boardNum;
-							private String boardTitle;
-							private String boardWriter;
-							private String boardContents;
-							private Date boardDate;
-							private Long boardHit; -->
+
                         <c:forEach items="${list}" var="dto">
                         
                         <c:set var="f" value="0"></c:set>
@@ -80,12 +75,53 @@
                                 <td>${dto.boardDate}</td>
                             </tr>
                             </c:if>
-                            
-
                             </c:forEach>
-
                         </tbody>
                    </table>
+                            
+                            <div>
+                            <form action="list" method="get">
+                            <select class="form-select" name="kind">							 
+							  <option value="kind1">Title</option>
+							  <option value="kind2">Contents</option>
+							  <option value="kind3">Writer</option>
+							</select>
+							
+							<div class="input-group mb-3">
+							  <input type="text" class="form-control" name="search">
+							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
+							</div>
+                            </form>
+                            </div>
+                            
+						<div>
+							<nav aria-label="Page navigation example">
+								<ul class="pagination">
+									<c:if test="${!pager.start}">
+										<li class="page-item"><a class="page-link"
+											href="./list?page=${pager.start_Num-1}"
+											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+										</a></li>
+									</c:if>
+
+									<c:forEach begin="${pager.start_Num}" end="${pager.last_Num}"
+										var="i">
+										<li class="page-item"><a class="page-link"
+											href="./list?page=${i}">${i}</a></li>
+									</c:forEach>
+
+									<!-- false일때만 보여지게 (true는 없어지게하는거임) -->
+									<c:if test="${!pager.last}">
+										<li class="page-item"><a class="page-link"
+											href="./list?page=${pager.last_Num+1}"
+											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+										</a></li>
+									</c:if>
+
+								</ul>
+							</nav>
+						</div>
+							
                    
                    <div>
                    	<a href="./add" class="">글쓰기</a>

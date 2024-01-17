@@ -30,10 +30,13 @@ public class NoticeService implements BoardService {
 	
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		pager.makeRow();
+		Integer totalCountt = boardDAO.getTotalCount(pager);
+		pager.makeNum(totalCountt);
+		List<BoardDTO> ar = boardDAO.getList(pager);
 		
 		//검색
 		
-		return boardDAO.getList(pager);
+		return ar;
 	}
 
 	@Override
@@ -69,15 +72,28 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int setUpdate(BoardDTO boardDTO, MultipartFile [] attachs) throws Exception {
+		//HDD에 파일 저장
+		return boardDAO.setUpdate(boardDTO);
 	}
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		//1. HDD파일삭제
+		// 1_1 DB에서 삭제할 파일명들을 조회
+		List<BoardFileDTO> ar = boardDAO.getFileList(boardDTO);
+		String fileName = servletContext.getRealPath("/resources/upload/notice");
+		
+		// 1_2. 파일명으로 삭제
+		for(BoardFileDTO f : ar) {
+			fileManager.fileDelete(fileName, f.getFileName());
+		}
+		
+		//2. DB에서 공지사항하고, 파일정보 삭제
+		//2.DB에서삭제
+		int result = boardDAO.setFileDelete(boardDTO);
+		
+		return result;
 	}
 
 }

@@ -8,6 +8,11 @@ import com.winter.app.board.BoardFileDTO;
 public class NoticeDTO extends BoardDTO{
 
 		private List<BoardFileDTO> fileDTOs;
+		
+
+
+
+
 
 		public List<BoardFileDTO> getFileDTOs() {
 			return fileDTOs;

@@ -5,9 +5,39 @@
   <mapper namespace="com.winter.app.board.qna.QnaDAO">
   
 
+<sql id="search">
+	<where>
+		<if test="kind == 'kind1'">
+			BOARDTITLE LIKE '%'||#{SEARCH}'%'
+		</if>
+		<if test="kind == 'kind2'">
+			BOARDCONTENTS LIKE '%'||#{SEARCH}'%'
+		</if>
+		<if test="kind == 'kind3'">
+			BOARDWRITER LIKE '%'||#{SEARCH}'%'
+		</if>
+	</where>
+</sql>
+
+
+
+<update id="setUpdate" parameterType="BoardDTO">
+UPDATE QNA 
+<set>
+<if test="boardTitle != null and boardTitle !=''">
+BOARDTITLE=#{boardTitle},
+</if>
+<if test="boardContents != null">
+BOARDCONTENTS=#{boardContents}
+</if>
+</set>
+WHERE BOARDNUM=#{boardNum}
+</update>
+
+
 
 <!-- file Delete -->
-<delete id="setFileDelete" parameterType="BoardDTO">
+<delete id="getFileDelete" parameterType="BoardDTO">
 DELETE QNAFILE WHERE BOARDNUM=#{boardNum}
 
 </delete>
@@ -63,7 +93,9 @@ DELETE QNAFILE WHERE BOARDNUM=#{boardNum}
 	SELECT * FROM
 		 (SELECT ROWNUM N, R.* FROM	
 		(SELECT * FROM QNA
-		ORDER BY BOARDREF DESC, BOARDSTEP ASC) R)
+			<include refid="search"></include>
+		ORDER BY BOARDREF DESC, BOARDSTEP ASC
+		) R)
 	WHERE N BETWEEN #{start_Num} AND #{last_Num}
 	
   </select>
@@ -102,5 +134,9 @@ DELETE QNAFILE WHERE BOARDNUM=#{boardNum}
  		WHERE BOARDNUM=#{boardNum}
   </select>
  
+ <select id="getTotalCount" resultType="Integer" parameterType="Pager">
+ SELECT COUNT(BOARDNUM) FROM QNA
+ <include refid="search"></include>
+ </select>
  
   </mapper>

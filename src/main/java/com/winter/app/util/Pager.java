@@ -1,6 +1,7 @@
 package com.winter.app.util;
 
 import com.winter.app.board.BoardDAO;
+import com.winter.app.board.BoardService;
 
 public class Pager {
 	private Integer start_Num;
@@ -14,8 +15,13 @@ public class Pager {
 	private Integer last_page;
 	private String search ="";
 	private String kind;
+
+	//이전 블럭이 없으면 true;
+	private boolean start;
+	//다음 블럭이 없으면 true;
+	private boolean last;
 	
-	private BoardDAO boardDAO;
+	private BoardService boardService;
 	
 	
 	
@@ -79,24 +85,51 @@ public class Pager {
 		this.start_Num = this.last_Num - this.getPager() + 1;
 	}
 	
-	public void makeNum(Pager pager) throws Exception{
+	public void makeNum(Integer totalCount) throws Exception{
 		//1. 총 갯수로 총 페이지 수 구하기
 		  
-		 Integer totalCount = boardDAO.getTotalCount(pager);
+		 
 				
 		 Integer totalPage = 0;
-		 int mod = 0;
-		 if(totalCount%pager.getPager()>0)mod=1;
-		 totalPage = (totalCount/pager.getPager()+mod);
-		
+		 totalPage = totalCount/this.getPager();
+		 if(totalCount%this.getPager() !=0) {
+			 totalPage++;
+		 }
+		 this.setTotalPage(totalPage);
 		//2. 총 페이지수로 총 블럭수 구하기
+		 Integer perBlock=5;
+		 this.setPerBlock(perBlock);
+		 Integer totalBlock=0;
+		 totalBlock=this.getTotalPage()/this.getPerBlock();
+		 if(this.getTotalPage()%this.getPerBlock() != 0) {
+			 totalBlock++;
+		 }
+		 this.setTotalBlock(totalBlock);
+		 
 		
 		//3. 현재 페이지번호로 현재 블럭번호 구하기
+		Integer curBlock=0;
+		curBlock = this.getPage()/this.getPerBlock();
+		if(this.getPage()%this.getPerBlock()!=0) {
+			curBlock++;
+		}
 		
 		//4. 현재 블럭번호로 시작번호와 끝번호 구하기 (jsp구역)
-		
+		Integer startnum=0;
+		Integer lastnum=0;
+		lastnum= curBlock*this.getPerBlock();
+		startnum= lastnum -(this.getPerBlock()-1);
+		this.setStart_Num(startnum);
+		this.setLast_Num(lastnum);
 		//5. 이전,다음 블럭 유무 
-		
+		if(curBlock == 1) {
+			this.setStart(true);
+		}
+		if(curBlock == totalBlock) {
+		this.setLast_Num(totalPage);
+		this.setLast(true);
+			
+		}
 	}
 	
 	public Integer getStart_Num() {
@@ -127,11 +160,24 @@ public class Pager {
 	public void setPager(Integer pager) {
 		this.pager = pager;
 	}
-	public BoardDAO getBoardDAO() {
-		return boardDAO;
+
+	public boolean isStart() {
+		return start;
 	}
-	public void setBoardDAO(BoardDAO boardDAO) {
-		this.boardDAO = boardDAO;
+	public void setStart(boolean start) {
+		this.start = start;
+	}
+	public boolean isLast() {
+		return last;
+	}
+	public void setLast(boolean last) {
+		this.last = last;
+	}
+	public BoardService getBoardService() {
+		return boardService;
+	}
+	public void setBoardService(BoardService boardService) {
+		this.boardService = boardService;
 	}
 	
 }
