@@ -26,26 +26,7 @@
               </div>
                   <div class="row gx-5 justify-content-center">
                    <div class="col-lg-11 col-xl-9 col-xxl-8">
-                   <form class="form-control" action="./reply" method="post" enctype="multipart/form-data" >
-                   <input type="hidden" name="boardNum" value="${boardDTO.boardNum}">
-                   <div class="mb-3">
-					  <label for="Title" class="form-label">Title</label>
-					  <input type="text" name="boardTitle" class="form-control" id="Title" >
-					</div>
-					 <div class="mb-3">
-					  <label for="Writer" class="form-label">Writer</label>
-					  <input type="text" name="boardWriter" class="form-control" id="Writer" >
-					</div>
-					<div class="mb-3">
-					  <label for="Contents" class="form-label">Example textarea</label>
-					  <textarea class="form-control" name="boardContents" id="Contents" rows="3"></textarea>
-					</div class="mb-3">
-					<button  class="btn-btn-primary">등록</button>
-					</form>
-                   
-                   
-                   </div>
-                   </div>
+					<c:import url="../temps/boardForm.jsp"></c:import>
                    </section>
         </main>
 	

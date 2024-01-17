@@ -41,7 +41,11 @@
                     
                     	</thead>
                         <tbody>
-
+							<c:if test="${list.size()==0 }">
+							<tr>
+							<td colspan="4">검색 결과가 없습니다</td>
+							</tr>
+							</c:if>
                         <c:forEach items="${list}" var="dto">
                         
                         <c:set var="f" value="0"></c:set>
@@ -89,7 +93,7 @@
 							</select>
 							
 							<div class="input-group mb-3">
-							  <input type="text" class="form-control" name="search">
+							  <input type="text" class="form-control" name="search" value="${pager.search}">
 							  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
 							</div>
                             </form>
@@ -101,12 +105,12 @@
 									<c:if test="${!pager.start}">
 										<li class="page-item ">
 										<a class="page-link" 
-											href="./list?page=${pager.start_Num-1}"
-											aria-label="Previous"> <span class="pager" data-page="${pager.start_Num-1} aria-hidden="true">&laquo;</span>
+											href="./list?page=${pager.start_page-1}"
+											aria-label="Previous"> <span class="pager" data-page="${pager.start_page-1} aria-hidden="true">&laquo;</span>
 										</a></li>
 									</c:if>
 
-									<c:forEach begin="${pager.start_Num}" end="${pager.last_Num}"
+									<c:forEach begin="${pager.start_page}" end="${pager.last_page}"
 										var="i">
 										<li class="page-item pager"><a class="page-link pager"
 											href="./list?page=${i}">${i}</a></li>
@@ -116,8 +120,8 @@
 									<c:if test="${!pager.last}">
 										<li class="page-item">
 										<a class="page-link " 
-											href="./list?page=${pager.last_Num+1}"
-											aria-label="Next"> <span class="pager" data-page="${pager.start_Num-1} aria-hidden="true">&raquo;</span>
+											href="./list?page=${pager.last_page+1}"
+											aria-label="Next"> <span class="pager" data-page="${pager.start_page-1} aria-hidden="true">&raquo;</span>
 										</a></li>
 									</c:if>
 

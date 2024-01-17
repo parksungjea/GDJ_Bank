@@ -82,12 +82,14 @@ public class Pager {
 	
 	public void makeRow() {
 		this.last_Num = this.getPage()*this.getPager();
-		this.start_Num = this.last_Num - this.getPager() + 1;
+		this.start_Num = this.last_Num  - (this.getPager()-1);
 	}
 	
 	public void makeNum(Integer totalCount) throws Exception{
 		//1. 총 갯수로 총 페이지 수 구하기
-		  
+		  if(totalCount<1) {
+			  totalCount=1;
+		  }
 		 
 				
 		 Integer totalPage = 0;
@@ -119,8 +121,8 @@ public class Pager {
 		Integer lastnum=0;
 		lastnum= curBlock*this.getPerBlock();
 		startnum= lastnum -(this.getPerBlock()-1);
-		this.setStart_Num(startnum);
-		this.setLast_Num(lastnum);
+		this.setStart_page(startnum);
+		this.setLast_page(lastnum);
 		//5. 이전,다음 블럭 유무 
 		if(curBlock == 1) {
 			this.setStart(true);
