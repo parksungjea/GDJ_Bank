@@ -15,6 +15,7 @@
  		<typeAlias type="java.lang.Integer" alias="Integer"/>
  		<typeAlias type="com.winter.app.board.qna.QnaDAO" alias="QnaDAO"/>
  		<typeAlias type="com.winter.app.board.qna.QnaDTO" alias="QnaDTO"/>
- 		
+ 		<typeAlias type="com.winter.app.member.MemberDTO" alias="MemberDTO"/>
+ 		<typeAlias type="com.winter.app.member.avatar.AvatarFileDTO" alias="AvatarFileDTO"/>
  	</typeAliases>
   </configuration>

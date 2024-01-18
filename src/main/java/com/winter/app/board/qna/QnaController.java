@@ -2,6 +2,8 @@ package com.winter.app.board.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.board.BoardDTO;
 import com.winter.app.board.BoardService;
+import com.winter.app.member.MemberDTO;
 import com.winter.app.util.Pager;
 
 @Controller
@@ -56,7 +59,10 @@ public class QnaController {
 		
 	}
 	@PostMapping(value = "add")
-	public String setAdd(BoardDTO boardDTO, MultipartFile [] attachs)throws Exception {
+	public String setAdd(BoardDTO boardDTO, MultipartFile [] attachs, HttpSession session)throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("mamber");
+		boardDTO.setBoardWriter(memberDTO.getUserName());
+	
 		int result = qnaService.setAdd(boardDTO, attachs);
 		return "redirect:./list";
 		
@@ -79,7 +85,9 @@ public class QnaController {
 	}
 	
 	@PostMapping(value = "reply")
-	public String setReply(QnaDTO qnaDTO) throws Exception{
+	public String setReply(QnaDTO qnaDTO, HttpSession session) throws Exception{
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("mamber");
+		qnaDTO.setBoardWriter(memberDTO.getUserName());
 		
 		int result = qnaService.setReply(qnaDTO);
 		

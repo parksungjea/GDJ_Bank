@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.winter.app.member.MemberDAO">
+
+
+
+	<select id="getDetail" resultMap="getDetailResult"
+		parameterType="MemberDTO">
+		SELECT *
+		FROM MEMBER MB
+		LEFT JOIN
+		AVATAR AT
+		USING(USERNAME)
+		WHERE USERNAME=#{userName}
+	</select>
+	<resultMap type="MemberDTO" id="getDetailResult">
+		<id column="USERNAME" property="userName"/>
+		<result column="PASSWORD" property="passWord" />
+		<result column="NAME" property="name" />
+		<result column="EMAIL" property="email" />
+		<result column="PHONE" property="phone" />
+		<result column="ADDRESS" property="addRess" />
+		<association property="avatarFileDTO" javaType="AvatarFileDTO">
+		<id column="FILENUM" property="fileNum"/>
+		<result column="FILENAME" property="fileName"/>
+		<result column="ORINAME" property="oriName"/>
+		</association>
+	</resultMap>
+	
+
+
+	<insert id="setJoin" parameterType="MemberDTO">
+		INSERT INTO MEMBER
+		VALUES(#{userName},#{passWord},#{name},#{email},#{phone},#{addRess})
+	</insert>
+
+	<insert id="setFileJoin" parameterType="AvatarFileDTO">
+		INSERT INTO AVATAR
+		VALUES(MEMBER_SEQ.NEXTVAL,#{userName},#{fileName},#{oriName})
+	</insert>
+</mapper>

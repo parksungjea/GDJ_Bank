@@ -19,7 +19,7 @@
             <!-- Navigation-->
 			<!-- 사용전 경로를 꼭 수정하세요 ~~ -->
 			<c:import url="../temps/header.jsp"></c:import>
-	
+			
 		<section>
           	  <div class="text-center mb-5">
                  <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">${board}List</span></h1>

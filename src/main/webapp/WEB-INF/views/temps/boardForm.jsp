@@ -10,10 +10,10 @@
 					  <label for="Title" class="form-label">Title</label>
 					  <input type="text" name="boardTitle" class="form-control"  value="${boardDTO.boardTitle}" id="Title" >
 					</div>
-					 <div class="mb-3">
+<%-- 					 <div class="mb-3">
 					  <label for="Writer" class="form-label">Writer</label>
-					  <input type="text" value="${boardDTO.boardWriter }" name="boardWriter" class="form-control" id="Writer" >
-					</div>
+					  <input type="text" value="${member.userName}" name="boardWriter" class="form-control" id="Writer" >
+					</div> --%>
 					<div class="mb-3">
 					  <label for="Contents" class="form-label">Contents</label>
 					  <textarea class="form-control" name="boardContents" id="Contents" rows="3">${boardDTO.boardContents}</textarea>

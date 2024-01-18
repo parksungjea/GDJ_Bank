@@ -95,5 +95,11 @@ public class NoticeService implements BoardService {
 		
 		return result;
 	}
+	
+	
+	public void setMyPage()throws Exception {
+		
+		
+	}
 
 }
