@@ -26,7 +26,7 @@
 			<h1>${detail.productRate}</h1>
 			<h1>${detail.productJumsu}</h1>
 		
-		<button><a href="./update?productNum=${detail.productNum}">update</a></button>
+		<a href="./update?productNum=${detail.productNum}">update</a>
         </main>
 	
 	<!-- Footer -->

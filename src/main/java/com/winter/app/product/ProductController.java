@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.util.Pager;
+
 
 @Controller
 @RequestMapping(value = "/product/*")
@@ -27,10 +29,11 @@ public class ProductController {
 	
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String getList(ProductDTO productDTO, Model model) throws Exception{
+	public String getList(ProductDTO productDTO, Model model, Pager pager) throws Exception{
 		
-		List<ProductDTO> ar = productService.getList();
+		List<ProductDTO> ar = productService.getList(pager);
 		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 		return "product/list";
 		
 	}
@@ -51,13 +54,14 @@ public class ProductController {
 		return "commons/result";
 	}
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public String update()throws Exception {
+	public String update(ProductDTO productDTO, Model model)throws Exception {
+		productDTO = productService.getDetail(productDTO);
+		model.addAttribute("update", productDTO);
 		
-
 		return "product/update";
 	}
 	@RequestMapping(value = "update", method =  RequestMethod.POST)
-	public String update(ProductDTO productDTO, Model model)throws Exception{
+	public String update(ProductDTO productDTO, Model model, ProductDAO productDAO)throws Exception{
 		int result = productService.update(productDTO);
 		
 		String msg = "실패";

@@ -17,9 +17,9 @@ public class Pager {
 	private String kind;
 
 	//이전 블럭이 없으면 true;
-	private boolean start;
+	private boolean start=true;
 	//다음 블럭이 없으면 true;
-	private boolean last;
+	private boolean last=true;
 	
 	private BoardService boardService;
 	

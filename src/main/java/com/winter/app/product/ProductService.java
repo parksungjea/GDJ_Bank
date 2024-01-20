@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.util.FileManager;
+import com.winter.app.util.Pager;
 
 @Service
 public class ProductService {
@@ -54,8 +55,13 @@ public class ProductService {
 		}
 		
 		
-		public List<ProductDTO> getList() throws Exception{
-			return productDAO.getList();
+		public List<ProductDTO> getList(Pager pager) throws Exception{
+			pager.makeRow();
+			Integer totalCount = productDAO.totalCount(pager);
+			pager.makeNum(totalCount);
+			 List<ProductDTO> ar = productDAO.getList();
+			
+			 return ar; 
 		}
 		
 		
