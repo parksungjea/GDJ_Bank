@@ -23,7 +23,7 @@
   
   
   <update id="update" parameterType="productDTO">
-  UPDATE PRODUCT SET
+  UPDATE PRODUCT SET WHERE
    PRODUCTNAME=#{productName}, 
   PRODUCTCONTENTS=#{productContents},
   PRODUCTRATE=#{productRate}
