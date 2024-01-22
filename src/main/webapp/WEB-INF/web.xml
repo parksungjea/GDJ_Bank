@@ -18,7 +18,6 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
-	
 	<filter-mapping>
 		<filter-name>encode</filter-name>
 		<url-pattern>/</url-pattern>

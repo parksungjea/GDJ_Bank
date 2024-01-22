@@ -25,6 +25,10 @@ public class QnaController {
 	private QnaService qnaService;
 	
 	
+
+	
+	
+	
 	@ModelAttribute("bbs")
 	public Integer getKind()throws Exception {
 		return 1;
@@ -48,6 +52,7 @@ public class QnaController {
 	public String getList(Pager pager, Model model) throws Exception{
 		List<BoardDTO> ar = qnaService.getList(pager);
 		model.addAttribute("list", ar);
+		model.addAttribute("Pager", pager);
 		
 		return "board/list";
 		

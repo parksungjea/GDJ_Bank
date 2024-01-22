@@ -31,10 +31,6 @@
 							disabled="disabled" type="text" value="${member.userName }"
 							name="userName" class="form-control" id="userName">
 					</div>
-					<div class="mb-3">
-						<label for="passWord" class="form-label">passWord</label> <input
-							value="${member.passWord }" type="password" name="passWord"
-							class="form-control" id="passWord">
 
 						<div class="mb-3">
 							<label for="userName" class="form-label">name</label> <input
@@ -59,14 +55,18 @@
 								 type="text" value="${member.addRess }"
 								name="addRess" class="form-control" id="userName">
 						</div>
-
+					
+					<div>
+					<a class="btn btn-primary" href="./update">수정</a>
+					<a class="btn btn-primary" href="./updatePassword">비밀번호수정</a>
+					<a class="btn btn-primary" href="./delete">탈퇴</a>
+					</div>
 
 
 
 						<div class="mb-3">
 							<button type="submit" class="btn-btn-primary">수정</button>
 						</div>
-					</div>
 				</form>
 			</div>
 		</div>

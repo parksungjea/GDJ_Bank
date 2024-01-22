@@ -43,7 +43,7 @@ public class MemberService {
 		MemberDTO m = memberDAO.getDetail(memberDTO);
 		if(m != null) {
 			if(m.getPassWord().equals(memberDTO.getPassWord())) {;
-			return m;
+			return memberDTO;
 			
 		}
 	}
@@ -59,16 +59,13 @@ public class MemberService {
 	
 }
 	
+public MemberDTO getDetail(MemberDTO memberDTO)throws Exception {
+	return memberDAO.getDetail(memberDTO);
+	
+}
 	
 	
-	
-	//public MemberDTO setMyPage(MemberDTO memberDTO)throws Exception {
-		
-		
-		
-//		return memberDAO.getDetail(memberDTO);
-		
-	//}
+
 	
 	
 	

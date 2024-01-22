@@ -26,17 +26,19 @@ public class MemberController {
 		return "redirect:../";
 	}
 	@GetMapping("update")
-	public void setUpdate()throws Exception {
-		
+	public void setUpdate(HttpSession session, Model model)throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		memberDTO = memberService.getDetail(memberDTO);
+		model.addAttribute("member", memberDTO);
 	}
 	@PostMapping("update")
 	public String setUpdate(MemberDTO memberDTO,HttpSession httpSession , Model model)throws Exception {
 		//DB에 업데이트 후 mypage로 리다이렉트
 		MemberDTO m = (MemberDTO)httpSession.getAttribute("member");
 		memberDTO.setUserName(m.getUserName());
-		memberDTO.setAvatarFileDTO(m.getAvatarFileDTO());
+		
 		 int result = memberService.setUpdate(memberDTO);
-		 httpSession.setAttribute("member", memberDTO);
+		 
 		 return "redirect:./mypage";
 	}
 	
@@ -88,12 +90,12 @@ public class MemberController {
 	}
 	
 	@GetMapping("mypage")
-	public String setMyPage(MemberDTO memberDTO, HttpSession session, MultipartFile file)throws Exception {
-
+	public String setMyPage(HttpSession session, Model model)throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		memberDTO = memberService.getDetail(memberDTO);
+		model.addAttribute("member", memberDTO);
 	
-		
-		
-	return "member/mypage";
+		return "member/mypage";
 		
 	}
 	
