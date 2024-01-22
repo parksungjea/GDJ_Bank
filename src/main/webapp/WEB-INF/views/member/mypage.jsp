@@ -52,10 +52,13 @@
 					</div>
 					
 					<div>
-					<img alt="" src="../resources/upload/${member.avatarFileDTO.filename}">
+					<img alt="" src="../resources/upload/${member.avatarFileDTO.fileName}">
 					</div>
 
-
+					
+					<div>
+					<a class="btn btn-primary" href="./update">수정</a>
+					</div>
 					
 
 			

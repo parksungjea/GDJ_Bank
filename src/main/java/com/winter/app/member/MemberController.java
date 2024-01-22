@@ -25,6 +25,20 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:../";
 	}
+	@GetMapping("update")
+	public void setUpdate()throws Exception {
+		
+	}
+	@PostMapping("update")
+	public String setUpdate(MemberDTO memberDTO,HttpSession httpSession , Model model)throws Exception {
+		//DB에 업데이트 후 mypage로 리다이렉트
+		MemberDTO m = (MemberDTO)httpSession.getAttribute("member");
+		memberDTO.setUserName(m.getUserName());
+		memberDTO.setAvatarFileDTO(m.getAvatarFileDTO());
+		 int result = memberService.setUpdate(memberDTO);
+		 httpSession.setAttribute("member", memberDTO);
+		 return "redirect:./mypage";
+	}
 	
 	
 	@GetMapping("login")

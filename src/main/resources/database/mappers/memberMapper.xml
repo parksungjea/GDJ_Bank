@@ -5,6 +5,28 @@
 <mapper namespace="com.winter.app.member.MemberDAO">
 
 
+	<update id="setUpdate" parameterType="MemberDTO">
+		UPDATE MEMBER
+		<set>
+			<if test="passWord != null and passWord != '' ">
+				PASSWORD=#{passWord},
+			</if>
+			<if test="name != null and name != '' ">
+				NAME=#{name},
+			</if>
+			<if test="email != null and email!= '' ">
+				EMAIL=#{email},
+			</if>
+			<if test="phone != null and phone != '' ">
+				PHONE=#{phone},
+			</if>
+			<if test="addRess != null and addRess!= '' ">
+				ADDRESS=#{addRess}
+			</if>
+		</set>
+			WHERE USERNAME=#{userName}
+	</update>
+
 
 	<select id="getDetail" resultMap="getDetailResult"
 		parameterType="MemberDTO">
@@ -16,19 +38,20 @@
 		WHERE USERNAME=#{userName}
 	</select>
 	<resultMap type="MemberDTO" id="getDetailResult">
-		<id column="USERNAME" property="userName"/>
+		<id column="USERNAME" property="userName" />
 		<result column="PASSWORD" property="passWord" />
 		<result column="NAME" property="name" />
 		<result column="EMAIL" property="email" />
 		<result column="PHONE" property="phone" />
 		<result column="ADDRESS" property="addRess" />
-		<association property="avatarFileDTO" javaType="AvatarFileDTO">
-		<id column="FILENUM" property="fileNum"/>
-		<result column="FILENAME" property="fileName"/>
-		<result column="ORINAME" property="oriName"/>
+		<association property="avatarFileDTO"
+			javaType="AvatarFileDTO">
+			<id column="FILENUM" property="fileNum" />
+			<result column="FILENAME" property="fileName" />
+			<result column="ORINAME" property="oriName" />
 		</association>
 	</resultMap>
-	
+
 
 
 	<insert id="setJoin" parameterType="MemberDTO">

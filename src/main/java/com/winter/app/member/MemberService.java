@@ -1,6 +1,7 @@
 package com.winter.app.member;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,11 +49,15 @@ public class MemberService {
 	}
 	return null;
 	
-	
+
 			
 	}
 	
+	public  int setUpdate(MemberDTO memberDTO)throws Exception {
+		
+		return memberDAO.setUpdate(memberDTO);
 	
+}
 	
 	
 	

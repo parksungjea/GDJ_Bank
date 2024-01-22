@@ -1,5 +1,8 @@
 package com.winter.app.member;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,6 +35,11 @@ public class MemberDAO {
 	
 	public MemberDTO getDetail(MemberDTO memberDTO)throws Exception {
 		return sqlSession.selectOne(namespace+"getDetail", memberDTO);
+		
+	}
+	
+	public int setUpdate(MemberDTO memberDTO)throws Exception {
+		return sqlSession.update(namespace+"setUpdate", memberDTO);
 		
 	}
 	
