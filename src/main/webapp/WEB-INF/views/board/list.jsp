@@ -131,7 +131,7 @@
 							
                    <c:if test="${not empty member}">
                    <div>
-                   	<a href="./add?boardNum=${list.boardNum}" class="">글쓰기</a>
+                   	<a href="./add">글쓰기</a>
                    </div>
                    </c:if>
                    </div>

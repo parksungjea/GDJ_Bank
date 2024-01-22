@@ -89,6 +89,11 @@ public class MemberController {
 		return "commons/result";
 	}
 	
+	@GetMapping("agreement")
+	public void setAgreement()throws Exception {
+		
+	}
+	
 	@GetMapping("mypage")
 	public String setMyPage(HttpSession session, Model model)throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");

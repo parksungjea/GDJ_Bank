@@ -65,8 +65,8 @@ public class QnaController {
 	}
 	@PostMapping(value = "add")
 	public String setAdd(BoardDTO boardDTO, MultipartFile [] attachs, HttpSession session)throws Exception {
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("mamber");
-		boardDTO.setBoardWriter(memberDTO.getUserName());
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		boardDTO.setBoardWriter(memberDTO.getName());
 	
 		int result = qnaService.setAdd(boardDTO, attachs);
 		return "redirect:./list";

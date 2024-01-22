@@ -33,7 +33,7 @@ public class WriterCheckInterceptor extends HandlerInterceptorAdapter {
 
 		String path = request.getRequestURI();
 		path = path.substring(0, path.lastIndexOf("/"));
-
+		
 		// num
 		Long n = Long.parseLong(request.getParameter("boardNum"));
 
