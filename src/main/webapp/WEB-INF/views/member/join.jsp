@@ -34,10 +34,18 @@
 							<label for="userName" class="form-label">Id</label> <input
 								type="text" name="userName" class="form-control" id="userName">
 						</div>
+
 						<div class="mb-3">
 							<label for="passWord" class="form-label">passWord</label> <input
 								type="password" name="passWord" class="form-control"
 								id="passWord">
+							<div id="passWordResult"></div>
+						</div>
+
+						<div class="mb-3">
+							<label for="passWordCheck" class="form-label">passWordCheck</label>
+							<input type="password" class="form-control" id="passWordCheck">
+							<div id="passWordCheckResult"></div>
 						</div>
 
 
@@ -70,8 +78,9 @@
 
 
 						<div class="mb-3">
-							<button type="submit" class="btn-btn-primary">등록</button>
+							<button type="button" id="btn2" class="btn-btn-primary">등록</button>
 						</div>
+						<img  id="img1" src="../resources/assets/codnjsld.jpeg">
 					</form>
 
 
@@ -83,5 +92,7 @@
 	<!-- Footer -->
 	<!-- 사용전 경로를 꼭 수정하세요 ~~ -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script type="text/javascript"
+		src="../resources/js/member/joinCheck.js"></script>
 </body>
 </html>
