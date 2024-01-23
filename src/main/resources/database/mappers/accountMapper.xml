@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.winter.app.account.AccountDAO">
+  
+  
+  <insert id="setAdd" parameterType="AccountDTO">
+  INSERT INTO ACCOUNT(ACCOUNTNUM,USERNAME,PRODUCTNUM,ACCOUNTPW,ACCOUNTDATE,ACCOUNTBALANCE)
+  VALUES(#{accountNum},#{userName},#{productNum},#{accountPw},SYSDATE,0)
+  </insert>
+  
+  <select id="getList" resultMap="a" parameterType="Pager">
+  SELECT * FROM ACCOUNT AT
+  		   JOIN	PRODUCT PT
+  		   USING(PRODUCTNUM)
+  		   WHERE USERNAME=#{search}
+  </select>
+  <resultMap type="ProductDTO" id="a">
+  <id column="PRODUCTNUM" property="productNum"/>
+  <result column="PRODUCTNAME" property="productName"/>
+  <result column="PRODUCTCONTENTS" property="productContents"/>
+  <result column="PRODUCTRATE" property="productRate"/>
+  <result column="PRODUCTJUMSU" property="productJumsu"/>
+  <collection property="accountDTOs" ofType="AccountDTO" javaType="List">
+  <id column="ACCOUNTNUM" property="accountNum"/>
+  <result column="USERNAME" property="userName"/>
+  <result column="ACCOUNTPW" property="accountPw"/>
+  <result column="ACCOUNTDATE" property="accountDate"/>
+  <result column="ACCOUNTBALANCE" property="accountBalance"/>
+  </collection>
+  </resultMap>
+  
+  <select id="totalCount" resultType="Integer" parameterType="Pager">
+  SELECT COUNT(ACCOUNTNUM) FROM ACCOUNT
+  WHERE USERNAME=#{search}
+  </select>
+  </mapper>

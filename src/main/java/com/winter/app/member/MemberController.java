@@ -31,6 +31,8 @@ public class MemberController {
 		memberDTO = memberService.getDetail(memberDTO);
 		model.addAttribute("member", memberDTO);
 	}
+	
+	
 	@PostMapping("update")
 	public String setUpdate(MemberDTO memberDTO,HttpSession httpSession , Model model)throws Exception {
 		//DB에 업데이트 후 mypage로 리다이렉트

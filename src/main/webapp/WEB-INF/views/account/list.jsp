@@ -15,12 +15,12 @@
 <!-- 사용전 경로를 꼭 수정하세요 ~~ -->
 <c:import url="../temps/head_css.jsp"></c:import>
 </head>
+
 <body class="d-flex flex-column h-100">
 	<main class="flex-shrink-0">
 		<!-- Navigation-->
 		<!-- 사용전 경로를 꼭 수정하세요 ~~ -->
 		<c:import url="../temps/header.jsp"></c:import>
-
 		<section>
 			<div class="text-center mb-5">
 				<h1 class="display-5 fw-bolder mb-0">
@@ -33,23 +33,32 @@
 					<div>
 						<table class="table table-hover">
 							<thead>
+								<!-- 
+								상품명
+					    	 계좌
+					    	 잔약
+					    	 이자율
+					    	 가입일
+    	  -->
 								<tr class="table-dark">
-									<th>ProductNum</th>
-									<th>ProductName</th>
-									<th>productContents</th>
-									<th>ProductRate</th>
-									<th>ProductJumsu</th>
+									<th>상품명</th>
+									<th>계좌</th>
+									<th>잔액</th>
+									<th>이자율</th>
+									<th>가입일</th>
 								</tr>
-
-
-
-								<tr class="table-dark">
-									<th>${detail.productNum}</th>
-									<th>${detail.productName}</th>
-									<th>${detail.productContents}</th>
-									<th>${detail.productRate}</th>
-									<th>${detail.productJumsu}</th>
+								
+								<c:forEach items="${list}" var="dto">
+								<tr>
+								<td>${dto.productName}</td>
+								<td>${dto.productRate}</td>
+								<c:forEach items="${dto.accountDTOs}" var="dtoo">
+								<td>${dtoo.accountNum}</td>
+								<td>${dtoo.accountBalance}</td>
+								<td>${dtoo.accountDate}</td>
+								</c:forEach>
 								</tr>
+								</c:forEach>
 							</thead>
 						</table>
 					</div>
@@ -57,10 +66,6 @@
 			</div>
 		</section>
 
-
-
-		<a href="../account/add?productNum=${detail.productNum}">상품 가입하기</a><br><br>
-		<a href="./update?productNum=${detail.productNum}">수정하기</a>
 	</main>
 
 	<!-- Footer -->
