@@ -5,6 +5,9 @@ let psch= document.getElementById("passWordCheck");
 let psdiv = document.getElementById("passWordResult");
 let pschdiv = document.getElementById("passWordCheckResult");
 let btn = document.getElementById("btn2");
+
+let id1 = document.getElementById("userName");
+let idCheck = document.getElementById("idCheck");
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
@@ -63,8 +66,6 @@ btn.addEventListener("click", function(){
         pschdiv.innerText="";
         psdiv.innerText="";
         alert("good~~")
-        return;
-      
     };
 
     if(userid.value == ""){
@@ -86,9 +87,26 @@ btn.addEventListener("click", function(){
         alert("addRess를 입력하시용")
         return;
     }
+})
 
+id1.addEventListener("blur", function(){
 
+    fetch("./idCheck?userName="+id1.value,{
+        method:"GET",
+       
+    })
+    .then(response => response.text())
+    .then(response=>console.log(response.trim()))
+    .then(response => {
 
+        if(response.trim() == 1){
+            idCheck.innerText="사용할수 있는 아이디입니다"
+        }else{
+            idCheck.innerText="중복된 아이디 입니다"
+        }
+    })
+        
+    
 })
 
 

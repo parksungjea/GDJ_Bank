@@ -9,7 +9,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>BoardAdd</title>
-       
+ 
         <!-- Favicon-->
 	<!-- 사용전 경로를 꼭 수정하세요 ~~ -->
 	<c:import url="../temps/head_css.jsp"></c:import>
@@ -26,5 +26,6 @@
 	<!-- Footer -->
 	<!-- 사용전 경로를 꼭 수정하세요 ~~ -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script type="text/javascript" src="../resources/js/commons/fileManager.js"></script>
     </body>
 </html>

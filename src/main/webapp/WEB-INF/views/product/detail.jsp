@@ -52,13 +52,15 @@
 								</tr>
 							</thead>
 						</table>
+						<input id="inp" type="hidden" value="${detail.productNum}">
+						
 					</div>
 				</div>
 			</div>
 		</section>
 
 
-
+		<button id="bts">찜콩하기</button>
 		<a href="../account/add?productNum=${detail.productNum}">상품 가입하기</a><br><br>
 		<a href="./update?productNum=${detail.productNum}">수정하기</a>
 	</main>
@@ -66,5 +68,6 @@
 	<!-- Footer -->
 	<!-- 사용전 경로를 꼭 수정하세요 ~~ -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script type="text/javascript" src="../../../resources/js/product/wishlist.js"></script>
 </body>
 </html>

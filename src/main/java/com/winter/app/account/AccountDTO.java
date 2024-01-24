@@ -7,7 +7,7 @@ public class AccountDTO {
 	private String userName;
 	private Long productNum;
 	private Long accountPw;
-	private Long accountDate;
+	private String accountDate;
 	private Long accountBalance;
 	
 	public Long getAccountNum() {
@@ -34,16 +34,17 @@ public class AccountDTO {
 	public void setAccountPw(Long accountPw) {
 		this.accountPw = accountPw;
 	}
-	public Long getAccountDate() {
-		return accountDate;
-	}
-	public void setAccountDate(Long accountDate) {
-		this.accountDate = accountDate;
-	}
+
 	public Long getAccountBalance() {
 		return accountBalance;
 	}
 	public void setAccountBalance(Long accountBalance) {
 		this.accountBalance = accountBalance;
+	}
+	public String getAccountDate() {
+		return accountDate;
+	}
+	public void setAccountDate(String accountDate) {
+		this.accountDate = accountDate;
 	}
 }

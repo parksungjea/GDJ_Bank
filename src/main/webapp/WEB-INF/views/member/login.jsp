@@ -29,12 +29,12 @@
 				
 				<form class="form-control" action="./login" method="post">
 					<div class="mb-3">
-						<label for="userName" class="form-label">Id</label> <input
+						<label for="userName" class="form-label" >Id</label> <input value="qkrtjdwp15" 
 							type="text" name="userName" class="form-control" id="userName">
 					</div>
 					<div class="mb-3">
 						<label for="passWord" class="form-label">passWord</label> <input
-							type="password" name="passWord" class="form-control"
+							type="password" name="passWord" value="q1234123" class="form-control"
 							id="passWord"><br><br>
 
 

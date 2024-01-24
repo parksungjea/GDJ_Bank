@@ -52,7 +52,7 @@
 								<tr>
 								<td>${dto.productName}</td>
 								<td>${dto.productRate}</td>
-								<c:forEach items="${dto.accountDTOs}" var="dtoo">
+								<c:forEach items="${dto.accountDTOs}"  var="dtoo">							
 								<td>${dtoo.accountNum}</td>
 								<td>${dtoo.accountBalance}</td>
 								<td>${dtoo.accountDate}</td>

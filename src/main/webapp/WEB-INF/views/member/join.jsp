@@ -33,6 +33,7 @@
 						<div class="mb-3">
 							<label for="userName" class="form-label">Id</label> <input
 								type="text" name="userName" class="form-control" id="userName">
+								<div id="idCheck"></div>
 						</div>
 
 						<div class="mb-3">
