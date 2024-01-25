@@ -11,6 +11,8 @@ public class ProductDTO {
 	private String productContents;
 	private double productRate;
 	private double productJumsu;
+	
+	private String userName;
 	private List<AccountDTO> accountDTOs;
 	
 	public Long getProductNum() {
@@ -48,6 +50,12 @@ public class ProductDTO {
 	}
 	public void setAccountDTOs(List<AccountDTO> accountDTOs) {
 		this.accountDTOs = accountDTOs;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	

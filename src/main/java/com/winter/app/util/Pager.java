@@ -15,6 +15,7 @@ public class Pager {
 	private Integer last_page;
 	private String search ="";
 	private String kind;
+	private String userName;
 
 	//이전 블럭이 없으면 true;
 	private boolean start=true;
@@ -123,12 +124,36 @@ public class Pager {
 		startnum= lastnum -(this.getPerBlock()-1);
 		this.setStart_page(startnum);
 		this.setLast_page(lastnum);
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			
 		//5. 이전,다음 블럭 유무 
 		if(curBlock == 1) {
 			this.setStart(true);
 		}
 		if(curBlock == totalBlock) {
-		this.setLast_Num(totalPage);
+		this.setLast_page(totalPage);
 		this.setLast(true);
 			
 		}
@@ -181,5 +206,17 @@ public class Pager {
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	@Override
+	public String toString() {
+		return "Pager [start_Num=" + start_Num + ", last_Num=" + last_Num + ", page=" + page + ", start_page="
+				+ start_page + ", last_page=" + last_page + "]";
+	}
+
 	
 }

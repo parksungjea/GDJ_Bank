@@ -8,6 +8,26 @@ bts.addEventListener("click",function(){
     })
     .then(response => response.text())
     .then(response => {
-     console.log(response)   
+           let bl = confirm("찜됬습니다 장바구니로 가실래요?")
+           if(bl){
+               location.href="/wishlist/list";
+        }else{
+            location.href="/product/list";
+           }
     })
 })
+
+// $("#bts").click(function(){
+// $.ajax({
+//     url:"/wishlist/add",
+//     method:"GET",
+//     data:{
+//         inp:$("#inp").val        
+//     },
+
+//     success:function(r){
+//             console.log(r)
+//     }
+// })
+
+// })

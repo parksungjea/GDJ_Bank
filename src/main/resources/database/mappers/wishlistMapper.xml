@@ -2,9 +2,35 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.winter.app.wishlist.WishListDAO">
-  <insert id="getWishList"  parameterType="WishListDTO">
-INSERT INTO WISHLIST
-VALUES(#{productNum}, #{memberDTO.userName})
-</insert>
-  </mapper>
+<mapper namespace="com.winter.app.wishlist.WishListDAO">
+	<insert id="getWishList" parameterType="WishListDTO">
+		INSERT INTO WISHLIST
+		VALUES(#{productNum}, #{memberDTO.userName})
+	</insert>
+
+	<select id="getList" resultType="ProductDTO"
+		parameterType="Pager">
+
+		SELECT * FROM
+		(SELECT ROWNUM R ,RG.* FROM
+		(SELECT * FROM WISHLIST w
+		LEFT JOIN
+		PRODUCT p
+		USING(PRODUCTNUM)
+		WHERE W.USERNAME=#{userName}
+		ORDER BY
+		PRODUCTNUM DESC) RG)
+		WHERE R BETWEEN #{start_Num} AND #{last_Num}
+	</select>
+
+
+	<select id="setTotalCount" resultType="Integer">
+		SELECT
+		COUNT(PRODUCTNUM) FROM PRODUCT
+	</select>
+	
+	<delete id="setDelete" parameterType="ProductDTO">
+	DELETE WISHLIST 
+	WHERE PRODUCTNUM=#{productNum} AND USERNAME=#{userName}
+	</delete>
+</mapper>

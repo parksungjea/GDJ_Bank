@@ -89,24 +89,44 @@ btn.addEventListener("click", function(){
     }
 })
 
-id1.addEventListener("blur", function(){
+// id1.addEventListener("blur", function(){
 
-    fetch("./idCheck?userName="+id1.value,{
-        method:"GET",
+//     fetch("./idCheck?userName="+id1.value,{
+//         method:"GET",
        
-    })
-    .then(response => response.text())
-    .then(response=>console.log(response.trim()))
-    .then(response => {
+//     })
+//     .then(response => response.text())
+//     .then(response=>console.log(response.trim()))
+//     .then(response => {
 
-        if(response.trim() == 1){
-            idCheck.innerText="사용할수 있는 아이디입니다"
-        }else{
-            idCheck.innerText="중복된 아이디 입니다"
-        }
-    })
+//         if(response.trim() == 1){
+//             idCheck.innerText="사용할수 있는 아이디입니다"
+//         }else{
+//             idCheck.innerText="중복된 아이디 입니다"
+//         }
+//     })
         
     
+// })
+
+$("#userName").blur(function(){
+    // $.get("idCheck?userName="+$("#userName").val(), function(){
+    // })
+    let userName = $("#userName").val();
+    $.ajax({
+        url:"./idCheck",
+        method:"GET",
+        data:{
+            userName:userName
+        },
+        success:function(r){
+            console.log(r)
+        },
+        error:function(){
+    alert("아이디 검증 실패")
+        }
+    })
+
 })
 
 
