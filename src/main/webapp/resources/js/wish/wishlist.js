@@ -1,6 +1,15 @@
 const all = document.getElementById("checks");
 let checks = document.querySelectorAll(".check");
 const del = document.getElementById("del")
+let deleteForm = document.getElementById("deleteForm")
+const add = document.getElementById("add");
+
+add.addEventListener("click", function(){
+    deleteForm.setAttribute("action", "../account/add")
+    deleteForm.submit();
+
+})
+
 console.log("Dddd")
 let j=0;
 all.addEventListener("click", ()=>{ 
@@ -30,57 +39,92 @@ checks[n].addEventListener("click", function(){
 })
 }
 
-// del.addEventListener("click", function(){
-//     let nums= [];
-//     let mm=[];
-//     for(let a=0; a<checks.length;a++){
-//         if(checks[a].checked){
-//         nums[a]=checks[a].value;
-//         mm[a]=checks[a];
-//     }
-// }
-// console.log("checks 배열 :"+checks);
-// console.log("nums 배열 : "+nums);
-//     console.log("mm 배열 : "+mm)
-$("#del").click(function(){
 
-    let nums = [];
-    let checkElement=[];
-    $(".check").each(function(idx, item){
-        if($(item).prop("checked")){
-           nums.push($(item).val());
-           checkElement.push($(item));
-        }
-    });
-    console.log(nums);
-    console.log(checkElement);
 
-    $.ajax({
-        method:'post',
-        url : '/wishlist/delete',
-        traditional : true,
-        data : {
-            productNum : nums
-        },
+let nums = [];
 
-        success : function(res){
-            if(res.trim()>0){
-                for(let i =0; i<$(checkElement).length;i++){
-                   $(checkElement[i]).parent().parent().remove();
-                   
-                 }
-              //location.reload();
-            }              
-          },
-          error : function(er){
-            alert("실패")
-        }
-    //location.reload();
+let form = new FormData(deleteForm);
+del.addEventListener("click", function(){
+for(let i = 0; i<checks.length;i++){
+    if(checks[i].checked){
+    nums[i] = checks[i].value;
+    console.log("NUMS :"+nums[i])
+    }
+}
 
-    //2.Element들 삭제
+fetch("/wishlist/delete", {
+    method:"POST",
+
+    headers:{
+        "Content-type":"application/x-www-form-urlencoded"
+    },
+
+    body:"productNum="+nums
+})
+.then((res) => {
+    return res.text();
+})
+.then(function(res){
+console.log(res)
+})
+
+})
+
+// body:form
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// $("#del").click(function(){
+
+//     let checkElement=[];
+//     $(".check").each(function(idx, item){
+//         if($(item).prop("checked")){
+//            nums.push($(item).val());
+//            checkElement.push($(item));
+//         }
+//     });
+//     console.log(nums);
+//     console.log(checkElement);
+
+//     $.ajax({
+//         method:'post',
+//         url : '/wishlist/delete',
+//         traditional : true,
+//         data : {
+//             productNum : nums
+//         },
+
         
-})
-})
+//         success : function(res){
+//             if(res.trim()>0){
+//                 for(let i =0; i<$(checkElement).length;i++){
+//                    $(checkElement[i]).parent().parent().remove();
+                   
+//                  }
+//               location.reload();
+//             }              
+//           },
+//           error : function(er){
+//             alert("실패")
+//         }
+//     location.reload();
+
+//     2.Element들 삭제
+        
+// })
+// })
 
 
 

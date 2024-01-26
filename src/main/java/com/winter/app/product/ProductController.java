@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,11 +19,16 @@ import com.winter.app.util.Pager;
 public class ProductController {
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private ReplyService replyService;
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String getDetail(ProductDTO productDTO, Model model) throws Exception {
+	public String getDetail(ProductDTO productDTO, Model model,ReplyDTO replyDTO) throws Exception {
 		productDTO = productService.getDetail(productDTO);
+		replyDTO.setProductNum(productDTO.getProductNum());
+
 		model.addAttribute("detail", productDTO);
+	
 		return "product/detail";
 	}
 	

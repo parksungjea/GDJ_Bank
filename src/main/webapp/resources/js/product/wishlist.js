@@ -17,17 +17,60 @@ bts.addEventListener("click",function(){
     })
 })
 
-// $("#bts").click(function(){
-// $.ajax({
-//     url:"/wishlist/add",
-//     method:"GET",
-//     data:{
-//         inp:$("#inp").val        
+//replyAdd (fetch)
+
+const replyAdd = document.getElementById("replyAdd");
+const replyContents = document.getElementById("replyContents")
+const replyJumsu = document.getElementById("replyJumsu")
+const replyForm = document.getElementById("replyForm");
+const productNum = document.getElementById("productNum")
+const div = document.getElementById("replyList")
+
+
+fetch("../reply/list?productNum="+productNum.value, {
+    method:"GET"
+})
+.then(r => r.text())
+.then(r=>div.innerHTML=r)
+
+
+replyAdd.addEventListener("click" , function(){
+let form = new FormData(replyForm)
+
+
+fetch("/reply/add",{
+    method:"POST",
+    headers:{
+     "Content-type":"application/x-www-form-urlencoded"
+   },
+   
+    body:"replyJumsu="+replyJumsu.value+"&productNum="+productNum.value+"&replyContents="+replyContents.value
+})
+
+.then(r=>r.text())
+.then(res=>{
+        div.innerHTML=res;
+        replyContents.value="";
+
+    })
+    
+})
+
+// fetch("/reply/add", {
+//     method:"POST",
+//     headers:{
+//         "Content-type":"application/x-www-form-urlencoded"
 //     },
-
-//     success:function(r){
-//             console.log(r)
-//     }
-// })
+//     body:"replyContents="+replyContents.value+"&replyJumsu="+replyJumsu.value
 
 // })
+// .then(response => response.text())
+// .then(res => {
+//     console.log(res)
+// })
+
+
+
+
+
+

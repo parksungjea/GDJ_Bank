@@ -24,7 +24,7 @@
 		<section>
 			<div class="text-center mb-5">
 				<h1 class="display-5 fw-bolder mb-0">
-					<span class="text-gradient d-inline">${board}List</span>
+					<span class="text-gradient d-inline">${board}Detail</span>
 				</h1>
 			</div>
 			<div class="row gx-5 justify-content-center">
@@ -53,7 +53,7 @@
 							</thead>
 						</table>
 						<input id="inp" type="hidden" value="${detail.productNum}">
-						
+
 					</div>
 				</div>
 			</div>
@@ -61,13 +61,49 @@
 
 
 		<button id="bts">찜콩하기</button>
-		<a href="../account/add?productNum=${detail.productNum}">상품 가입하기</a><br><br>
-		<a href="./update?productNum=${detail.productNum}">수정하기</a>
+		<a href="../account/add?productNum=${detail.productNum}">상품 가입하기</a><br>
+		<br> <a href="./update?productNum=${detail.productNum}">수정하기</a>
+		<div class="my-3">
+
+			<div class="my-3" id="replyList">
+				<table>
+					<c:forEach items="${reply}" var="dto">
+						<tr>
+							<td>${dto.userName}</td>
+							<td>${dto.replyContents}</td>
+							<td>${dto.replyDate}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+
+			<form id="replyForm">
+				<input type="hidden" id="productNum" name="productNum"
+					value="${detail.productNum}">
+				<div>
+					<textarea class="form-control" id="replyContents" rows="3"></textarea>
+				</div>
+				<div class="mb-3">
+					<select class="form-select" id="replyJumsu" name="replyJumsu"
+						aria-label="Default select example">
+						<option value="5">5</option>
+						<option value="4">4</option>
+						<option value="3">3</option>
+						<option value="2">2</option>
+						<option value="1">1</option>
+					</select>
+				</div>
+				<div>
+					<button id="replyAdd" type="button" class="btn btn-primary">댓글달기</button>
+				</div>
+			</form>
+		</div>
 	</main>
 
 	<!-- Footer -->
 	<!-- 사용전 경로를 꼭 수정하세요 ~~ -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script type="text/javascript" src="../../../resources/js/product/wishlist.js"></script>
+	<script type="text/javascript"
+		src="../../../resources/js/product/wishlist.js"></script>
 </body>
 </html>

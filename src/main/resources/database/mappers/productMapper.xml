@@ -29,4 +29,8 @@
   PRODUCTRATE=#{productRate}
   
   </update>
+  
+  <select id="getReplyList" parameterType="ReplyDTO">
+  SELECT * FROM
+  </select>
   </mapper>

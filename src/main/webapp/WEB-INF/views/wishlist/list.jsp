@@ -38,6 +38,7 @@
 					<div class="container">
 						<div>
 							<button id="del">삭제하기</button>
+							<button id="add">가입</button>
 						</div>
 					</div>
 
@@ -52,15 +53,17 @@
 							</tr>
 						</thead>
 						<tbody id="tjsp">
-							<c:forEach items="${list}" var="dto">
-								<tr>
-									<td><input type="checkbox" class="check" name="check"
-										value="${dto.productNum }"></td>
-									<td>${dto.productNum}</td>
-									<td>${dto.productName}</td>
-									<td>${dto.productRate}</td>
-								</tr>
-							</c:forEach>
+							<form id="deleteForm">
+								<c:forEach items="${list}" var="dto">
+									<tr>
+										<td><input type="checkbox" class="check" name="check"
+											value="${dto.productNum }"></td>
+										<td>${dto.productNum}</td>
+										<td>${dto.productName}</td>
+										<td>${dto.productRate}</td>
+									</tr>
+								</c:forEach>
+							</form>
 						</tbody>
 					</table>
 
