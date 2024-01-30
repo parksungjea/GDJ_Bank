@@ -1,6 +1,9 @@
 package com.winter.app.member;
 
+import java.util.List;
+
 import com.winter.app.member.avatar.AvatarFileDTO;
+import com.winter.app.member.role.RoleDTO;
 
 public class MemberDTO {
 
@@ -10,6 +13,8 @@ public class MemberDTO {
 		private String email;
 		private String phone;
 		private String addRess;
+		
+		private List<RoleDTO> roleDTOs;
 		
 		private AvatarFileDTO avatarFileDTO;
 
@@ -54,5 +59,11 @@ public class MemberDTO {
 		}
 		public void setAvatarFileDTO(AvatarFileDTO avatarFileDTO) {
 			this.avatarFileDTO = avatarFileDTO;
+		}
+		public List<RoleDTO> getRoleDTOs() {
+			return roleDTOs;
+		}
+		public void setRoleDTOs(List<RoleDTO> roleDTOs) {
+			this.roleDTOs = roleDTOs;
 		}
 }

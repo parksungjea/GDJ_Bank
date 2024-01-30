@@ -21,5 +21,6 @@
  		<typeAlias type="com.winter.app.wishlist.WishListDAO" alias="WishListDAO"/>
  		<typeAlias type="com.winter.app.wishlist.WishListDTO" alias="WishListDTO"/>
  		<typeAlias type="com.winter.app.product.ReplyDTO" alias="ReplyDTO"/>
+ 		<typeAlias type="com.winter.app.member.role.RoleDTO" alias="RoleDTO"/>
  	</typeAliases>
   </configuration>

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import com.winter.app.errors.MemberLoginException;
 import com.winter.app.member.avatar.AvatarFileDTO;
 import com.winter.app.util.FileManager;
 
@@ -45,9 +45,14 @@ public class MemberService {
 			if(m.getPassWord().equals(memberDTO.getPassWord())) {;
 			return memberDTO;
 			
+		}else {
+			m=null;
+			throw new MemberLoginException("pw를 확인");
 		}
+	}else {
+		throw new MemberLoginException("ID를 확인");
 	}
-	return null;
+//	return m;
 	
 
 			

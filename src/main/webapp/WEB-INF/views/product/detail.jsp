@@ -75,6 +75,10 @@
 						</tr>
 					</c:forEach>
 				</table>
+				
+				<div>
+				<button id="more" data-replyList-page=""></button>
+				</div>
 			</div>
 
 			<form id="replyForm">
